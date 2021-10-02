@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<!-- Blog Layout -->
+<section class="blog-layout news-default section-space">
+<div class="container">
+	<div class="row ">
+		{% for blog in blogs %}
+		<div class="col-lg-4 col-md-6 col-12">
+			<!-- Single Blog -->
+			<div class="single-news ">
+				<div class="news-head overlay">
+					<img src="{{ blog.image.url }}" alt="#">
+					<ul class="news-meta">
+						<li class="author"><a href="#"><i class="fa fa-user"></i>Staff</a></li>
+						<li class="date"><i class="fa fa-calendar"></i>{{blog.publish_date|date:"Y"}}</li>
+					</ul>
+				</div>
+				<div class="news-body">
+					<div class="news-content">
+						<h3 class="news-title"><a href="blog/{{blog.id}}">{{blog.title}}</a></h3>
+						<div class="news-text"><p>{{blog.short_description | slice:"100"}}...</p></div>
+						<a href="blog/{{blog.id}}" class="more">Continue reading <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+					</div>
+				</div>
+			</div>
+			<!--/ End Single Blog -->
+		</div>
+		{% endfor %}
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<!-- Pagination -->
+			<div class="pagination-plugin">
+				<ul class="pagination-list">
+					{% if blogs.has_previous %}
+					<li class="prev"><a href="?page={{page_obj.previous_page_number}}">Prev</a></li>
+					 {% else %}
+					<li class="prev"><a>Prev</a></li>					 
+            		 {% endif %}
+            		 {% if blogs.has_previous %}					 
+					<li class="page-numbers"><a href="?page={{ page_obj.previous_page_number }}">{{ blogs.previous_page_number }}</a></li>
+					{% endif %}
+					<li class="page-numbers current"><a>{{blogs.number}}</a></li>
+					{% if blogs.has_next %}
+					<li class="page-numbers"><a href="?page={{blogs.next_page_number}}">{{blogs.next_page_number}}</a></li>
+					  {% endif %}
+					 {% if blogs.has_next %}
+					<li class="next"><a href="?page={{page_obj.next_page_number}}">Next</a></li>
+					{% else %}
+					<li class="next"><a>Next</a></li>
+            		{% endif %}					
+				</ul>
+
+			</div>
+			<!--/ End Pagination -->
+		</div>
+	</div>
+</div>
+</section>
+
+
+{% endblock %}

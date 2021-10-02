@@ -1,0 +1,164 @@
+{% extends 'base.html' %}
+{% load 'static %'}
+{% block content %} 
+
+
+<div id="main-content" class="blog-page bg-light pt-5">
+<div class="container">
+<div class="row clearfix">
+<div class="col-lg-8 col-md-12 left-box">
+<div class="card single_post">
+    <div class="body border-top-1">
+        	<div class="fotorama" data-allowfullscreen="true" data-arrows="true"
+     data-click="true" data-nav="thumbs"  data-fit="cover" data-arrows="true"
+     data-click="true">
+        		{% for p in propertyimage %}
+                <img src="{{p.images.url}}">
+                {% endfor %}
+        	</div>
+            <br/><br/>
+        <h3>{{property.title}}</h3>
+        <p>
+            {{property.details | safe}}
+        </p>
+    </div>                        
+</div>
+<div class="card">
+        <div class="header">
+            <h2>Features</h2>
+        </div>
+        <div class="body">
+			<ul class="property-features">         
+            {% for f in property.feature.all %}
+            <li class="features-icon">
+                <i class="fa fa-check-square" aria-hidden="true"></i> {{f}}
+            </li>
+           {% endfor %}
+				
+			</ul>                  
+
+        </div>
+    </div>
+
+    <!-- Send Email -->
+    <div class="card" style="background: #fffbde;">
+        <div class="header">
+            <h2>Contact us <small>Email us regarding this posting. We will try to get back to as as soon as we can.</small></h2>
+        </div>
+<div class="body">
+    <div class="comment-form">
+        <form class="row clearfix" action="" method="get">
+           <div class="col-sm-6">
+                <h6>Full name or Username</h6>
+                <div class="form-group">
+                    <input type="text" class="form-control p-2 ml-0" {% if user.is_authenticated %} value="{{user.username}}" {% else %} placeholder="Your Name" {% endif %} name="mail_username" required="">
+                </div>
+
+            </div>
+            <div class="col-sm-6">
+                <h6>Email address</h6>
+                <div class="form-group">
+                    <input type="text" class="form-control p-2 " 
+                    {% if user.is_authenticated %} value="{{user.email}}" {% else %} placeholder="Email Address" {% endif %} name="mail_email_address" required="">
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <h6>Listing title</h6>
+                <div class="form-group">
+                    <input type="text" name="mail_listing_name"  class="form-control p-2 " value="{{property.title}}" required="">
+                </div>                
+                <div class="form-group">
+                    <input type="hidden" name="mail_listing_id"  class="form-control p-2 " value="{{property.id}}" required="">
+                </div>                
+                <div class="form-group">
+                    <input type="hidden" name="mail_listing_url"  class="form-control p-2 " value="{{ request.build_absolute_uri }}{{ object.get_absolute_url }}" required="">
+                </div>  
+                <h6>Subject</h6>              
+                <div class="form-group">
+                    <input type="text" name="mail_listing_subject" class="form-control p-2 "required="">
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <h6>Your message</h6>
+                <div class="form-group">
+                    <textarea rows="4" name="mail_message" class="form-control no-resize p-2 " placeholder="Please type what you want..." required=""></textarea>
+                </div>
+                <button type="submit" class="btn btn-block bg-secondary font-weight-bold">SEND</button>
+            </div>                                
+        </form>
+    </div>
+</div>
+    </div>
+    <!-- Send email -->
+</div>
+<div class="col-lg-4 col-md-12 right-box">
+<div class="card">
+
+<ul class="list-group">
+    <li class="list-group-item text-muted">Information</li>
+    {% if property.price_us %}
+    <li class="list-group-item text-right"><span class="pull-left">
+        <strong>Price US</strong></span> {{property.price_us}}
+    </li>
+    {% endif %}
+    {% if property.listing_type %}
+    <li class="list-group-item text-right"><span class="pull-left">
+        <strong>Listing Type</strong></span> {{property.listing_type}}
+    </li>
+    {% endif %}
+    {% if property.property_type %}    
+    <li class="list-group-item text-right"><span class="pull-left">
+        <strong>Type</strong></span> {{property.property_type}}
+    </li>
+    {% endif %}
+    {% if property.location %}
+    <li class="list-group-item text-right" location="{{property.location}}"><span class="pull-left">
+        <strong>Location </strong></span> {{property.location}}
+    </li> 
+    {% endif %}
+    {% if property.lot_Size_m2 %}
+    <li class="list-group-item text-right"><span class="pull-left">
+        <strong>Lot Size m² :</strong></span> {{property.lot_Size_m2}}
+    </li>   
+    {% endif %}
+    {% if property.lot_Size_ft2 %}
+    <li class="list-group-item text-right"><span class="pull-left">
+        <strong>Lot Size ft² :</strong></span> {{property.lot_Size_ft2}}
+    </li>  
+    {% endif %}
+
+    <li class="list-group-item text-right" bed="{{property.beds}}"><span class="pull-left">
+        <strong>Beds :</strong></span> {{property.beds}}
+    </li> 
+    {% if property.baths %}
+    <li class="list-group-item text-right" baths="{{property.baths}}"><span class="pull-left">
+        <strong>Baths :</strong></span> {{property.baths}}
+    </li>  
+    {% endif %}
+    {% if property.property_id %}
+    <li class="list-group-item text-right" ><span class="pull-left">
+        <strong>Property ID :</strong></span> {{property.property_id}}
+    </li>
+    {% endif %}
+</ul>
+
+</div>
+<div class="card" style="background:red;padding:0;">
+    <div class="body widget" style="padding-bottom:0px; color:#fff; text-align:center">
+            <h5 class="text-white"><a href="/properties">Filter properties >></a></h5>
+    </div>
+</div>
+<div class="card">
+    <div class="body widget" style="pointer-events:none;">
+<div id="cont_845d0756a2838555ef5e9f29afe3d9e7"><script type="text/javascript" async src="https://www.theweather.com/wid_loader/845d0756a2838555ef5e9f29afe3d9e7"></script></div>
+    </div>
+</div>
+
+</div>
+</div>
+
+</div>
+</div>
+
+
+{% endblock %}

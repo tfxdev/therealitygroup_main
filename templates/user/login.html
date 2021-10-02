@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<style type="text/css">
+	input[type="text"],input[type="email"],input[type="password"] {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 7px;
+}
+</style>
+<div class="container align-items-center mt-5 mb-5">
+	<div style="max-width: 400px; " class="border p-3 m-auto bg-white">
+		<h4 class="text-center mt-3 mb-3">Login</h4>
+		<form method="post" action="">
+			{% csrf_token %}
+		<div >
+			{% for field in form %}
+				<p class="font-weight-bold" style="color: #000;">{{field.label_tag}}</p>
+				{{field}}<br>
+				{% if field.help_text %}
+					<small class="text-gray-dark">{{field.help_text}}</small>
+				{% endif %}				
+				{% if field.error %}
+					<small style="color:red">{{field.error}}</small>
+				{% endif %}<br>
+			{% endfor %}
+			<input type="submit" class="btn btn-block text-center font-weight-bold border-0 rounded text-white p-2 bg-primary mb-3" value="Login">
+			<i>Do not have an accont? </i><a class="font-weight-bold" href="user/register"> &nbsp; &nbsp;Register here</a>
+		</div>
+	</form>
+	</div>
+</div>
+{% endblock %}

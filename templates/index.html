@@ -1,0 +1,332 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Hero Slider -->
+<section class="hero-slider style1">
+<div class="home-slider">
+{% for slide in slider %}
+<!-- Single Slider -->
+<div class="single-slider" style="background-image:url('{{ slide.background_image.url }}');background-repeat: repeat;">
+<div class="container">
+<div class="row">
+	<div class="col-lg-7 col-md-8 col-12">
+		<div class="welcome-text"> 
+			<div class="hero-text"> 
+				<h4>{{slide.title_top}}</h4>
+				<h1>{{slide.title}}</h1>
+				<div class="p-text">
+					<p>{{slide.description}}</p>
+				</div>
+				<div class="button">
+					<a href="{{slide.button_url}}" class="bizwheel-btn theme-2 effect">{{slide.button_text}}</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+{% endfor %}
+<!--/ End Single Slider -->
+</div>
+</section>
+<!--/ End Hero Slider -->
+
+
+
+<!-- Call To Action -->
+{% for bannerHomeMiddledescription in bannerHomeMiddle %}
+<section class="call-action overlay" style="background-color: #00A273;">
+<div class="container">
+<div class="row">
+<div class="col-lg-9 col-12">
+<div class="call-inner">
+	<h2>{{bannerHomeMiddledescription.title}}</h2>
+	<p>{{bannerHomeMiddledescription.description}}</p>
+</div>
+</div>
+<div class="col-lg-3 col-12">
+<div class="button">
+	<a href="{{bannerHomeMiddle.button_link}}" class="bizwheel-btn">{{bannerHomeMiddledescription.button_text}}</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+{% endfor %}
+<!--/ End Call to action -->
+
+
+
+
+<!-- Featured items -->
+<section class="services section-bg section-space">
+<div class="container">
+	{% for description in property_description %}
+	<div class="row">
+		<div class="col-12">
+		<div class="section-title style2 text-center">
+			<div class="section-top">
+				<h1><span style="background:#fff0; color: #fff0;">&nbsp;</span><b>{{description.title}}</b></h1><h4>{{description.featured_text}}</h4>
+			</div>
+			<div class="section-bottom">
+				<div class="text-style-two ">
+					<p><a href="/properties/?is_featured=true&price_us__gt=&price_us__lt=&grid=12" class="btn pull-right bizwheel-btn" >See more</a></p>
+				</div>
+			</div>
+		</div>
+		</div>
+	</div>
+	{% endfor %}
+
+	<div class="row home-page-grid">
+
+	 {% for property in properties %}
+	 {% if property.is_featured %}
+	 <div class="col-lg-3 col-md-3 col-12">
+	<!-- Single Property -->       
+	    <div class="propertie-list propertie-grid">
+	        <div class="propertie-list-image">
+	            <img class="img-fluid" src="{{ property.featured_image.url }}" alt="">
+	        </div>
+	        <div class="propertie-list-details">
+	            <div class="propertie-list-info">
+	                <div class="propertie-list-title">
+	                    <a href="/property/{{property.id}}" class="font-weight-bold">{{property.title | truncatechars:45}}</a>
+	                </div>
+	<!--                         <div class="propertie-list-option">
+	                    {{property.short_description}}
+	                </div> -->
+	            </div>
+                <div class="propertie-list-favourite-time" style="justify-content: space-between;">
+{% if user.is_authenticated%}
+
+    {% if property.id in lovedProperties %}
+            <a style="color: red" class="propertie-list-favourite order-2 border-0" >
+                <i class="far fa-heart"></i>
+            </a>
+    {% else %}
+    <form method="get" action="">
+    	        <button name="love" value="{{property.id}}" class="propertie-list-favourite order-2 border-0" >
+            <i class="far fa-heart"></i>
+        </button>
+    </form>
+
+    {% endif %}
+
+{% else %}
+    <a class="propertie-list-favourite order-2 border-0" href="/user/login">
+            <i class="far fa-heart"></i>
+    </a>
+{% endif %}
+                    <span class="propertie-list-time order-1">
+                        <i class="fa fa-usd"></i> {{property.price_us}}
+                    </span>
+                </div>
+	        </div>
+	    </div>
+	</div>
+	{% endif %}
+	  {% endfor %}
+	<!--/ End Single Property -->
+	</div>
+
+</div>
+</section>
+<!--/ End Services -->
+
+
+
+<!-- Recent Properties For Sale In Sosua -->
+<section class="services section-bg section-space">
+<div class="container">
+	{% for description in property_description %}
+	<div class="row">
+		<div class="col-12">
+		<div class="section-title style2 text-center">
+			<div class="section-top">
+				<h1><span style="background:#fff0; color: #fff0;">&nbsp;</span><b>Recent Properties For Sale in Sosua
+</b></h1><h4>&nbsp;</h4>
+			</div>
+			<div class="section-bottom">
+				<div class="text-style-two ">
+					<p><a href="/?is_featured=true&location=6&price_us__gt=&price_us__lt=&grid=12" class="btn pull-right bizwheel-btn" >See more</a></p>
+				</div>
+			</div>
+		</div>
+		</div>
+	</div>
+	{% endfor %}
+
+	<div class="row home-page-grid">
+
+	 {% for property in properties_sosua %}
+	 <div class="col-lg-3 col-md-3 col-12">
+	<!-- Single Property -->       
+	    <div class="propertie-list propertie-grid">
+	        <div class="propertie-list-image">
+	            <img class="img-fluid" src="{{ property.featured_image.url }}" alt="">
+	        </div>
+	        <div class="propertie-list-details">
+	            <div class="propertie-list-info">
+	                <div class="propertie-list-title">
+	                    <a href="/property/{{property.id}}" class="font-weight-bold">{{property.title | truncatechars:45}}</a>
+	                </div>
+	<!--                         <div class="propertie-list-option">
+	                    {{property.short_description}}
+	                </div> -->
+	            </div>
+	            <div class="propertie-list-favourite-time">
+	                <a class="propertie-list-favourite order-2" href="?love={{property.id}}"><i class="far fa-heart"></i></a>
+	                <span class="propertie-list-time order-1">
+	                    <i class="fa fa-usd"></i> {{property.price_us}}</span>
+	            </div>
+	        </div>
+	    </div>
+	</div> 
+	  {% endfor %}
+	<!--/ End Single Property -->
+	</div>
+
+</div>
+</section>
+<!--/ End Services -->
+
+
+
+<!-- Featured items -->
+<section class="services section-bg section-space">
+<div class="container">
+	{% for description in property_description %}
+	<div class="row">
+		<div class="col-12">
+		<div class="section-title style2 text-center">
+			<div class="section-top">
+				<h1><span style="background:#fff0; color: #fff0;">&nbsp;</span><b>Recent Properties For Sale in Cabarete
+</b></h1><h4>&nbsp;</h4>
+			</div>
+			<div class="section-bottom">
+				<div class="text-style-two ">
+					<p><a href="/properties/?is_featured=true&location=8&price_us__gt=&price_us__lt=&grid=12" class="btn pull-right bizwheel-btn" >See more</a></p>
+				</div>
+			</div>
+		</div>
+		</div>
+	</div>
+	{% endfor %}
+
+	<div class="row home-page-grid">
+
+	 {% for property in properties_cabarete %}  
+	 <div class="col-lg-3 col-md-3 col-12">
+	<!-- Single Property -->       
+	    <div class="propertie-list propertie-grid">
+	        <div class="propertie-list-image">
+	            <img class="img-fluid" src="{{ property.featured_image.url }}" alt="">
+	        </div>
+	        <div class="propertie-list-details">
+	            <div class="propertie-list-info">
+	                <div class="propertie-list-title">
+	                    <a href="/property/{{property.id}}" class="font-weight-bold">{{property.title | truncatechars:45}}</a>
+	                </div>
+	<!--                         <div class="propertie-list-option">
+	                    {{property.short_description}}
+	                </div> -->
+	            </div>
+	            <div class="propertie-list-favourite-time">
+	                <a class="propertie-list-favourite order-2" href="?love={{property.id}}"><i class="far fa-heart"></i></a>
+	                <span class="propertie-list-time order-1">
+	                    <i class="fa fa-usd"></i> {{property.price_us}}</span>
+	            </div>
+	        </div>
+	    </div>
+	</div> 
+	  {% endfor %}
+	<!--/ End Single Property -->
+	</div>
+
+</div>
+</section>
+<!--/ End Services -->
+
+<!-- Latest Blog -->
+<section class="latest-blog section-space">
+<div class="container">
+<div class="row">
+<div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-12">
+<div class="section-title default text-center">
+	<div class="section-top">
+		<h1><b> Published</b></h1>
+	</div>
+	<div class="section-bottom">
+		<div class="text">
+			<p>Lorem Ipsum Dolor Sit Amet, Conse Ctetur Adipiscing Elit, Sed Do Eiusmod Tempor Ares Incididunt Utlabore. Dolore Magna Ones Baliqua</p>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-12">
+<div class="blog-latest blog-latest-slider">
+		{% for blog in blogs %}	
+	<div class="single-slider">
+		<!-- Single Blog -->
+		<div class="single-news ">
+			<div class="news-head overlay">
+				<span class="news-img" style="background-image:url('{{ blog.image.url }}')"></span>
+				<a href="#" class="bizwheel-btn theme-2">Read more</a>
+			</div>
+			<div class="news-body">
+				<div class="news-content">
+					<h3 class="news-title"><a href="/blog/{{blog.id}}">{{blog.title}}</a></h3>
+					<div class="news-text"><p>{{blog.short_description | truncatechars:120}}</p></div>
+					<ul class="news-meta">
+						<li class="date"><i class="fa fa-calendar"></i>{{blog.publish_date}}</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!--/ End Single Blog -->
+
+	</div>
+		{% endfor %}
+</div>
+</div>
+</div>
+</div>
+</section>
+<!--/ End Latest Blog -->
+<section style="background-image: url(https://images.pexels.com/photos/5454381/pexels-photo-5454381.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);" class="p-5">
+	<div class="container">
+		<h2>Contact Us</h2><br/>
+		<form class="p-5" style="background-color: #ffffff94!important;">
+			<div class="row">
+				<div class="col-md m-2">
+					<input type="text" class="form-control p-2" placeholder="Name">
+				</div>
+				<div class="col-md m-2">
+					<input type="email" class="form-control p-2" placeholder="Email" name="">
+				</div>
+				<div class="col-md m-2">
+					<input type="text" class="form-control p-2" placeholder="Phone Number" name="">
+				</div>
+			</div>
+
+			<div class="row mt-3">
+				<div class="col">
+					<textarea class="form-control" rows="10"></textarea>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col mt-2">
+					<input type="checkbox" required="" name=""> I have read the <a href="/terms"> terms and conditions </a> and accept them.
+					<input type="submit" class="btn btn-block btn-lg btn-primary mt-2 " value="Send" name="submit">
+				</div>
+			</div>
+		</form>
+	</div>
+</section>
+
+{% endblock %}

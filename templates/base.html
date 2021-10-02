@@ -1,0 +1,410 @@
+{% load static %}
+{% load meta %}
+<!DOCTYPE html>
+<html lang="en">
+{% for basic in basics %}
+<head {% meta_namespaces %}>
+	{% include 'meta/meta.html' %}
+<!-- Meta Tag --> 
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name='copyright' content='pavilan'>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="property" />
+{% if property.seo_title %}
+<meta property="og:title" content="{{property.seo_title}}" />
+{% endif %}
+
+{% if property.seo_description %}
+<meta property="og:description" content="{{property.seo_description}}" />
+{% endif %}
+
+<meta property="og:url" content="https://therealtygroup.com.do{{request.get_full_path}}" />
+<meta property="og:site_name" content="The Realty Group" />
+<meta property="property:publisher" content="https://www.facebook.com/patricia.vanleersum.3" />
+<meta property="property:author" content="https://www.facebook.com/patricia.vanleersum.3" />
+<!-- Title Tag  -->
+{% if page_title %}
+<title>{{page_title}} - The Realty Group</title>
+{% else %}
+<title>The Realty Group &#8211; North Coast Real Estate</title>
+{% endif %}
+
+
+<!-- Favicon -->
+<link rel="icon" type="image/favicon.png" href="{% static 'img/favicon.png' %}">
+
+<!-- Web Font -->
+<!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400&display=swap" rel="stylesheet">
+ -->
+<!-- Bizwheel Plugins CSS -->
+ <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/choices.min.css' %}">
+<script src="{% static 'js/choices.min.js' %}"></script> 
+<style type="text/css">
+[bed="properties.Beds.None"],[location="properties.Location.None"],[baths="properties.Baths.None"] {
+    display: none !important;
+}
+	input.choices__input.choices__input--cloned {
+    display: none;
+}
+.choices__list--multiple .choices__item {
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 3px;
+    padding: 1px 6px;
+    font-size: 12px;
+    font-weight: 500;
+    margin-right: 3.75px;
+    margin-bottom: 3.75px;
+    background-color: #34a2c5;
+    border: 0px solid #00a5bb;
+    color: #fff;
+    word-break: break-all;
+}
+</style>
+<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> -->
+
+
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/cubeportfolio.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/font-awesome.css' %}">
+<link rel="stylesheet" href="{% static 'css/jquery.fancybox.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/magnific-popup.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/owl-carousel.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/login-register.css' %}">
+
+<!-- Bizwheel Stylesheet -->  
+<link rel="stylesheet" href="{% static 'css/reset.css' %}">
+<link rel="stylesheet" href="{% static 'style.css' %}">
+<link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+<link rel="stylesheet" href="{% static 'css/listing.css' %}"> 
+<!-- Bizwheel Colors -->
+<link rel="stylesheet" href="{% static 'css/skins/skin-1.css' %}">
+<!--<link rel="stylesheet" href="css/skins/skin-2.css">
+<link rel="stylesheet" href="css/skins/skin-3.css">
+<link rel="stylesheet" href="css/skins/skin-4.css">-->
+
+<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<!-- Fotorama from CDNJS, 19 KB -->
+<link  href="{% static 'css/fotorama.css' %}" rel="stylesheet">
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/fotorama.js' %}"></script>
+
+</head>
+<body id="bg">
+
+<!-- Boxed Layout -->
+<div id="page" class="site boxed-layout"> 
+
+<!-- Preloader -->
+<div class="preeloader">
+	<div class="preloader-spinner"></div>
+</div>
+<!--/ End Preloader -->
+
+<!-- Header -->
+<header class="header">
+	<!-- Topbar -->
+	<div class="topbar">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-10 col-12">
+					<!-- Top Contact -->
+					<div class="top-contact">
+						<div class="single-contact">
+							<a href="{{basic.facebook_link}}"><i class="fa fa-facebook"></i></a>
+							<a href="https://www.pinterest.com/0at42dc5fzt5477ubbglcfcf9ucgom"><i class="fa fa-pinterest"></i></a>
+							<a href="https://www.linkedin.com/in/willem-van-leersum-95410713/"><i class="fa fa-linkedin"></i></a>
+							<a class="top-right-bar-hide-on-mob">|</a>
+						</div>
+						<div class="single-contact"><i class="fa fa-phone"></i>Phone: {{basic.phone}}</div>
+						<div class="single-contact"><a href="mailto:{{basic.email}}o" target="_blank"><i class="fa fa-envelope-open"></i>Email: {{basic.email}}o</a></div>	
+						<div class="single-contact">
+							<div id="google_translate_element"></div>
+						</div>	
+						<!--<div class="single-contact"><i class="fa fa-clock-o"></i>Opening: 08AM - 09PM</div> -->
+					</div>
+					<!-- End Top Contact -->
+				</div>	
+		<div class="col-lg-2 col-12">
+			<div class="topbar-right">
+				<!-- Social Icons -->
+				<ul class="social-icons">
+					{% if user.is_authenticated%}
+					<li><a href="/user/dashboard/"><i class="fa fa-dashboard" ></i></a></li>
+					<li><a href="/user/dashboard/"><i class="fa fa-heart"></i></a></li>		
+					<li><a href="/user/logout/"><i class="fa fa-sign-out"></i></a></li>					
+					{% endif %}
+					{% if not user.is_authenticated %}
+					<li><a href="/user/login"><i class="fa fa-sign-in" ></i></a></li>
+					<li><a href="/user/register"><i class="fa fa-user-plus"></i></a></li>
+					{% endif %}
+				</ul>															
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+	<!--/ End Topbar -->
+<!-- Middle Header -->
+<div class="middle-header">
+<div class="container">
+<div class="row">
+<div class="col-12">
+<div class="middle-inner">
+<div class="row">
+	<div class="col-lg-2 col-md-3 col-12">
+		<!-- Logo -->
+		<div class="logo">
+			<!-- Image Logo -->
+			<div class="img-logo">
+				<a href="/">
+					<img src="{{basic.logo.url}}" width="50px" alt="#">
+				</a>
+			</div>
+		</div>								
+		<div class="mobile-nav"></div>
+	</div>
+	<div class="col-lg-10 col-md-9 col-12">
+		<div class="menu-area">
+			<!-- Main Menu -->
+	<nav class="navbar navbar-expand-lg">
+		<div class="navbar-collapse">	
+			<div class="nav-inner">	
+				<div class="menu-home-menu-container">
+					<!-- Naviagiton -->
+					<ul id="nav" class="nav main-menu menu navbar-nav">
+						<li><a href="/">Home</a></li>
+						<li><a href="/properties">Properties for Sale</a></li>
+						<li class="icon-active"><a href="#">Buyers</a>
+							<ul class="sub-menu">
+								<li><a href="/blog/1">Buying Real Estate</a></li>
+							</ul>
+						</li>									
+						<li class="icon-active"><a href="#">Sellers</a>
+							<ul class="sub-menu">
+								<li><a href="/blog/2">Present your house</a></li>
+							</ul>
+						</li>
+					<li><a href="/blogs">Blog</a></li>
+						<li><a href="/about">About Us</a></li>
+					</ul>
+					<!--/ End Naviagiton -->
+				</div>
+			</div>
+		</div>
+	</nav>
+			<!--/ End Main Menu -->	
+			<!-- Right Bar -->
+			<!-- <div class="right-bar">
+				<!-- Search Bar 
+				<ul class="right-nav">
+					<li class="top-search"><a href="#0"><i class="fa fa-search"></i></a></li>
+					<li class="bar"><a class="fa fa-bars"></a></li>
+				</ul> -->
+				<!--/ End Search Bar -->
+				<!-- Search Form -->
+				<div class="search-top">
+					<form action="#" class="search-form" method="get">
+						<input type="text" name="s" value="" placeholder="Search here"/>
+						<button type="submit" id="searchsubmit"><i class="fa fa-search"></i></button>
+					</form>
+				</div>
+				<!--/ End Search Form -->
+			</div>	
+			<!--/ End Right Bar -->
+		</div>
+	</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+	<!--/ End Middle Header 
+	<!-- Sidebar Popup 
+	<div class="sidebar-popup">
+		<div class="cross">
+			<a class="btn"><i class="fa fa-close"></i></a>
+		</div>
+		<div class="single-content">
+			<h4>About Bizwheel</h4>
+			<p>The main component of a healthy environment for self esteem is that it needs be nurturing. It should provide unconditional warmth.</p>
+			<!-- Social Icons 
+			<ul class="social">
+				<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+				<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+				<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+				<li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+			</ul>
+		</div>
+		<div class="single-content">
+			<h4>Important Links</h4>   
+			<ul class="links">
+				<li><a href="#">About Us</a></li>
+				<li><a href="#">Our Services</a></li>
+				<li><a href="#">Portfolio</a></li>
+				<li><a href="#">Pricing Plan</a></li>
+				<li><a href="#">Blog & News</a></li>
+				<li><a href="#">Contact us</a></li>
+			</ul>
+		</div>	
+	</div>
+ Sidebar Popup -->	
+</header>
+<!--/ End Header -->
+{% block content%}
+
+{% endblock%}
+
+<!-- Footer -->
+<footer class="footer" style="background-image:url('{{basic.footer_background.url}}');    border-top: 1px solid #e2e2e2;">
+	<!-- Footer Top -->
+	<div class="footer-top">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 col-md-6 col-12">
+					<!-- Footer About -->		
+					<div class="single-widget footer-about widget">	
+						<div class="logo">
+							<div class="img-logo">
+								<a class="logo" href="/">
+									<img class="img-responsive" src="{{basic.footer_logo.url}}" alt="logo">
+								</a>
+							</div>
+						</div>
+						<div class="footer-widget-about-description">
+							<p>{{basic.footer_description}}</p>
+						</div>	
+						<div class="social">
+							<!-- Social Icons -->
+							<ul class="social-icons">
+								<li><a class="facebook" href="https://www.facebook.com/patricia.vanleersum.3" target="_blank"><i class="fa fa-facebook"></i></a></li>
+								<li><a class="linkedin" href="https://www.linkedin.com/in/willem-van-leersum-95410713/" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+								<li><a class="pinterest" href="https://www.pinterest.com/0at42dc5fzt5477ubbglcfcf9ucgom/" target="_blank"><i class="fa fa-pinterest-p"></i></a></li>
+							</ul>
+						</div>
+					</div>		
+					<!--/ End Footer About -->		
+				</div>
+				<div class="col-lg-3 col-md-6 col-12">
+					<!-- Footer Links -->		
+					<div class="single-widget f-link widget">
+						<h3 class="widget-title">Company</h3>
+						<ul>
+							<li><a href="/privacy">Privacy Policy</a></li>
+							<li><a href="/terms">Terms of Use</a></li>
+						</ul>
+					</div>			
+					<!--/ End Footer Links -->			
+				</div>
+
+				<div class="col-lg-3 col-md-6 col-12">	
+					<!-- Footer Contact -->		
+					<div class="single-widget footer_contact widget">	
+						<h3 class="widget-title">Contact</h3>
+						<ul class="address-widget-list">
+							<li class="footer-mobile-number"><i class="fa fa-phone"></i> <a href="tell:{{basic.phone_link}}">{{basic.phone}}</a>
+							</li>
+							<li class="footer-mobile-number"><i class="fa fa-envelope"></i> <a href="mailto:{{basic.email}}o">{{basic.email}}o</a></li>
+							<li class="footer-mobile-number"><i class="fa fa-map-marker"></i>{{basic.location}}</li>
+						</ul>
+						<br>
+						<br>
+						<br>
+
+
+					</div>		
+					<!--/ End Footer Contact -->						
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Copyright -->
+	<div class="copyright">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="copyright-content">
+						<!-- Copyright Text -->
+						<p>© {{basic.copyright_text}}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--/ End Copyright -->
+</footer>
+						<!-- GTranslate: https://gtranslate.io/ -->
+<style type="text/css">
+<!--
+#goog-gt-tt {display:none !important;}
+.goog-te-banner-frame {display:none !important;}
+.goog-te-menu-value:hover {text-decoration:none !important;}
+.goog-te-gadget-icon {background-image:url(//gtranslate.net/flags/gt_logo_19x19.gif) !important;background-position:0 0 !important;}
+body {top:0 !important;}
+-->
+.goog-te-gadget-simple {
+    background-color: #000000;
+    border-left: 0px solid #000000;
+    border-top: 0px solid #ffffff;
+    border-bottom: 0px solid #ffffff;
+    border-right: 0px solid #ffffff;
+    font-size: 10pt;
+    display: inline-block;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    cursor: pointer;
+    zoom: 0;
+    border-radius: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+</style>
+<div id="google_translate_element"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE,autoDisplay: false, includedLanguages: ''}, 'google_translate_element');}
+</script><script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<!-- Jquery JS -->
+<script src="{% static 'js/jquery-migrate-3.0.0.js' %}"></script>
+<!-- Popper JS -->
+<!-- 	<script src="{% static 'js/popper.min.js' %}"></script> -->
+<!-- Bootstrap JS -->
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<!-- Modernizr JS -->
+<script src="{% static 'js/modernizr.min.js' %}"></script>
+<!-- ScrollUp JS -->
+<script src="{% static 'js/scrollup.js' %}"></script>
+<!-- FacnyBox JS -->
+<script src="{% static 'js/jquery-fancybox.min.js' %}"></script>
+<!-- Cube Portfolio JS -->
+<script src="{% static 'js/cubeportfolio.min.js' %}"></script>
+<!-- Slick Nav JS -->
+<script src="{% static 'js/slicknav.min.js' %}"></script>
+<!-- Slick Nav JS -->
+<script src="{% static 'js/slicknav.min.js' %}"></script>
+<!-- Slick Slider JS -->
+<script src="{% static 'js/owl-carousel.min.js' %}"></script>
+<!-- Easing JS -->
+<script src="{% static 'js/easing.js' %}"></script>
+<!-- Magnipic Popup JS -->
+<script src="{% static 'js/magnific-popup.min.js' %}"></script>
+<!-- Active JS -->
+<script src="{% static 'js/active.js' %}"></script>
+<script id="dsq-count-scr" src="//the-reality-group.disqus.com/count.js" async></script>
+</body>
+</html>
+{% endfor %}
